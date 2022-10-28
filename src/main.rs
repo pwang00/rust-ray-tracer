@@ -36,8 +36,7 @@ fn hits_sphere(center: PointR3, radius: f64, r: Ray) -> bool{
     let b: f64 = 2.0 * offset.dot_product(r.direction);
     let c: f64 = offset.dot_product(offset) - radius.powi(2);
     let qd = b.powi(2) - 4.0 * a * c; // Quadratic discriminant = b^2 - 4ac
-    return qd > 0.0
-
+    qd > 0.0
 }
 
 fn render_image_ppm(width: u32, height: u32){
