@@ -15,6 +15,6 @@ pub trait PointAt{
 // WIP
 impl PointAt for Ray{
     fn point_at(&self, t: f64) -> Point{
-        Point{x: 0.0, y: 0.0, z: 0.0}
+        self.origin + t * self.direction
     }
 }
