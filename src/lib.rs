@@ -39,6 +39,11 @@ mod vector_tests{
         let v2: VecR3 = VecR3{x: 1.0, y: 1.0, z: 1.0};
         assert_eq!(v1.norm(), 14.0f64.sqrt());
         assert_eq!(v2.norm(), 3.0f64.sqrt())
+    }
+    #[test]
+    fn vector_normalize(){
+        let v1: VecR3 = VecR3{x: 3.0, y: 4.0, z: 0.0};
 
+        assert_eq!(v1.normalize(), VecR3{x: 3.0/5.0, y: 4.0/5.0, z: 0.0})
     }
 }

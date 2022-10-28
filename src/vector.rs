@@ -65,6 +65,18 @@ impl ops::Mul<VecR3> for f64{
     }
 }
 
+impl ops::Div<f64> for VecR3{
+    type Output = VecR3;
+
+    fn div(self, rhs: f64) -> Self::Output {
+        VecR3{
+            x: self.x / rhs,
+            y: self.y / rhs, 
+            z: self.z / rhs
+        }   
+    }
+}
+
 impl VecOps for VecR3{
     fn norm(&self) -> f64{
         (self.x.powi(2) + self.y.powi(2) + self.z.powi(2)).sqrt()
