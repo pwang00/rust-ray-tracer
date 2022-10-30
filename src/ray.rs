@@ -12,7 +12,6 @@ pub trait PointAt{
     fn point_at(&self, t: f64) -> PointR3;
 }
 
-// WIP
 impl PointAt for Ray{
     fn point_at(&self, t: f64) -> PointR3{
         self.origin + t * self.direction

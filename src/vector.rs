@@ -1,5 +1,6 @@
+use core::panic;
 use std::{fmt, ops};
-
+use crate::color::*;
 #[derive(Copy, Clone, PartialEq, Debug)]
 pub struct VecR3{
     pub x: f64,
@@ -13,6 +14,7 @@ pub trait VecOps{
     fn dot_product(self, other: VecR3) -> f64;
     fn cross_product(self, other: VecR3) -> VecR3;
     fn normalize(&self) -> VecR3;
+    fn to_pixel(&self) -> Pixel;
 }
 
 impl fmt::Display for VecR3{
@@ -100,6 +102,19 @@ impl VecOps for VecR3{
             x: self.x / norm,
             y: self.y / norm,
             z: self.z / norm
+        }
+    }
+
+    fn to_pixel(&self) -> Pixel {
+
+        if self.x > 1.0 || self.y > 1.0 || self.z > 1.0{
+            panic!("Vector components are not normalized!")
+        }
+
+        Pixel { 
+            r: (self.x * 256.0) as u8, 
+            g: (self.y * 256.0) as u8, 
+            b: (self.z * 256.0) as u8 
         }
     }
 
