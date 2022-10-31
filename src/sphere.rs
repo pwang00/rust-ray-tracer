@@ -9,7 +9,7 @@ pub struct Sphere{
 }
 
 impl Hittable for Sphere{
-    fn hit(&self, r: &Ray, t_min: f64, t_max: f64, rec: &mut HitRecord) -> bool {
+    fn hit(&self, r: Ray, t_min: f64, t_max: f64, rec: &mut HitRecord) -> bool {
         let oc: VecR3 = r.origin - self.center;
         let a: f64 = r.direction.norm().powi(2);
         let half_b = oc.dot_product(r.direction);
@@ -38,6 +38,8 @@ impl Hittable for Sphere{
         rec.p = r.point_at(rec.t);
         rec.nv = (rec.p - self.center) / self.radius;
 
+        let outward_normal: VecR3 = (rec.p - self.center) / self.radius;
+        rec.set_face_normal(r, outward_normal);
         return true;
 
     }

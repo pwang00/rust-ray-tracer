@@ -23,6 +23,14 @@ impl fmt::Display for VecR3{
     }
 }
 
+impl ops::Neg for VecR3{
+    type Output = VecR3;
+
+    fn neg(self) -> Self::Output {
+        -1.0 * self
+    }
+}
+
 impl ops::Add<VecR3> for VecR3{
     type Output = VecR3;
 
