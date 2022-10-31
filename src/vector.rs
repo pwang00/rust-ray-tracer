@@ -1,6 +1,7 @@
 use core::panic;
 use std::{fmt, ops};
 use crate::color::*;
+
 #[derive(Copy, Clone, PartialEq, Debug)]
 pub struct VecR3{
     pub x: f64,
