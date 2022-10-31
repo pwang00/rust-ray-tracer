@@ -115,7 +115,6 @@ impl VecOps for VecR3{
     }
 
     fn to_pixel(&self) -> Pixel {
-
         if self.x > 1.0 || self.y > 1.0 || self.z > 1.0{
             panic!("Vector components are not normalized!")
         }
