@@ -4,6 +4,7 @@ Self-learning Rust by implementing a ray tracer following this guide: https://ra
 
 # Current progress:
 
-Shading via normal vector to sphere
+[x] Shading via normal vector to sphere
+[x] World and hittable object abstraction
 
-![Shading via normal vector to sphere](test.png)
+![Context-aware rendering of sphere](test.png)
