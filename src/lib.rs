@@ -5,10 +5,11 @@ pub mod ray;
 pub mod hittable_list;
 pub mod sphere;
 pub mod utilities;
+pub mod camera;
 
 #[cfg(test)]
 mod vector_tests{
-    use crate::vector::{VecR3, VecOps};
+    use crate::vector::VecR3;
 
     #[test]
     fn vector_add(){

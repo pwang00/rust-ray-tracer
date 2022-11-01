@@ -8,12 +8,8 @@ pub struct Ray{
     pub direction : VecR3
 }
 
-pub trait PointAt{
-    fn point_at(&self, t: f64) -> PointR3;
-}
-
-impl PointAt for Ray{
-    fn point_at(&self, t: f64) -> PointR3{
+impl Ray{
+    pub fn point_at(&self, t: f64) -> PointR3{
         self.origin + t * self.direction
     }
 }

@@ -10,14 +10,6 @@ pub struct VecR3{
 }
 
 // Vector operations
-pub trait VecOps{
-    fn norm(&self) -> f64;
-    fn dot_product(self, other: VecR3) -> f64;
-    fn cross_product(self, other: VecR3) -> VecR3;
-    fn normalize(&self) -> VecR3;
-    fn to_pixel(&self) -> Pixel;
-}
-
 impl fmt::Display for VecR3{
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "({}, {}, {})", self.x, self.y, self.z)
@@ -88,16 +80,16 @@ impl ops::Div<f64> for VecR3{
     }
 }
 
-impl VecOps for VecR3{
-    fn norm(&self) -> f64{
+impl VecR3{
+    pub fn norm(&self) -> f64{
         (self.x.powi(2) + self.y.powi(2) + self.z.powi(2)).sqrt()
     }
 
-    fn dot_product(self, other: VecR3) -> f64 {
+    pub fn dot_product(self, other: VecR3) -> f64 {
         self.x * other.x + self.y * other.y + self.z * other.z
     }
 
-    fn cross_product(self, other: VecR3) -> VecR3 {
+    pub fn cross_product(self, other: VecR3) -> VecR3 {
         VecR3{
             x: (self.y * other.z - self.z * other.y),
             y: -(self.x * other.z - self.z * other.y),
@@ -105,7 +97,7 @@ impl VecOps for VecR3{
         }
     }
 
-    fn normalize(&self) -> VecR3{
+    pub fn normalize(&self) -> VecR3{
         let norm: f64 = self.norm();
         VecR3{
             x: self.x / norm,
@@ -114,7 +106,7 @@ impl VecOps for VecR3{
         }
     }
 
-    fn to_pixel(&self) -> Pixel {
+    pub fn to_pixel(&self) -> Pixel {
         if self.x > 1.0 || self.y > 1.0 || self.z > 1.0{
             panic!("Vector components are not normalized!  Failure with vector {}", self)
         }

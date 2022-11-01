@@ -8,16 +8,11 @@ pub struct HittableList{
     pub objects: Vec<Rc<dyn Hittable>>
 }
 
-pub trait HittableListOps{
-    fn clear_list(&mut self);
-    fn add_obj(&mut self, obj: Rc<dyn Hittable>);
-}
-
-impl HittableListOps for HittableList{
-    fn clear_list(&mut self) {
+impl HittableList{
+    pub fn clear_list(&mut self) {
         self.objects.clear()
     }
-    fn add_obj(&mut self, obj: Rc<dyn Hittable>) {
+    pub fn add_obj(&mut self, obj: Rc<dyn Hittable>) {
         self.objects.push(obj)
     }
 }
