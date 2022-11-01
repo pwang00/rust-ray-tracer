@@ -23,7 +23,6 @@ impl Hittable for Sphere{
 
         // Roots are (-b +/- sqrt(b^2 - 4ac)) / 2a
         let sqrt_qd = qd.sqrt();
-        
         let mut root = (-half_b - sqrt_qd) / a;
 
         if root < t_min || root > t_max{
