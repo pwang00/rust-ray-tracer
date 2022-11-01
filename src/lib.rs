@@ -4,6 +4,8 @@ pub mod hittable;
 pub mod ray;
 pub mod hittable_list;
 pub mod sphere;
+pub mod utilities;
+
 #[cfg(test)]
 mod vector_tests{
     use crate::vector::{VecR3, VecOps};

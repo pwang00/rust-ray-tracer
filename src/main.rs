@@ -1,33 +1,24 @@
+use std::rc::Rc;
+
+use ray_tracer::hittable::*;
+use ray_tracer::hittable_list::*;
+use ray_tracer::sphere::Sphere;
 use ray_tracer::vector::*;
 use ray_tracer::ray::*;
 use ray_tracer::color::*;
+use ray_tracer::utilities::*;
 
 const ASPECT_RATIO: f64 = 16.0/9.0;
 const WIDTH: u32 = 400;
 const HEIGHT: u32 = (WIDTH as f64 / ASPECT_RATIO) as u32;
 
+fn ray_to_pixel(r: Ray, world: &dyn Hittable) -> Pixel{
+    let mut rec: HitRecord = DEFAULT_HIT_RECORD;
 
-fn hits_sphere(center: PointR3, radius: f64, r: Ray) -> f64{
-    let oc: VecR3 = r.origin - center;
-    let a: f64 = r.direction.dot_product(r.direction);
-    let b: f64 = 2.0 * oc.dot_product(r.direction);
-    let c: f64 = oc.dot_product(oc) - radius.powi(2);
-    let qd = b.powi(2) - 4.0 * a * c; // Quadratic discriminant = b^2 - 4ac
-    if qd < 0.0 {-1.0} else {(-b - qd.sqrt()) / (2.0 * a)}
-}
-
-fn ray_to_pixel(r: Ray) -> Pixel{
-    let t: f64 = hits_sphere(PointR3{x: 0.0, y: 0.0, z: -1.0}, 0.5, r);
-
-    if t > 0.0{
-        let nv: VecR3 = (r.point_at(t) - VecR3{x:0.0, y: 0.0, z: -1.0}).normalize();
-        return Pixel{
-            r: (0.5 * (nv.x + 1.0) * 256.0) as u8, 
-            g: (0.5 * (nv.y + 1.0) * 256.0) as u8, 
-            b: (0.5 * (nv.z + 1.0) * 256.0) as u8 
-        }
+    if world.hit(r, 0.0, INF, &mut rec){
+        return (0.5 * (rec.nv + VecR3{x: 1.0, y: 1.0, z: 1.0})).to_pixel()
     }
-    // Unit vector pointing in the direction of ray
+
     let unit_vec = r.direction.normalize();
     let t = 0.5 * (unit_vec.y + 1.0);
     let p = (1.0 - t) * VecR3{x: 1.0, y: 1.0, z: 1.0} 
@@ -37,6 +28,16 @@ fn ray_to_pixel(r: Ray) -> Pixel{
 }
 
 fn render_image_ppm(width: u32, height: u32){
+    let mut world: HittableList = HittableList { objects: Vec::new() };
+
+    let (c1, c2) = (
+        PointR3{x: 0.0, y: 0.0, z: -1.0}, 
+        PointR3{x: 0.0, y: -100.5, z: -1.0}
+    );
+    
+    world.add_obj(Rc::new(Sphere{center: c1, radius: 0.5}));
+    world.add_obj(Rc::new(Sphere{center: c2, radius: 100.0}));
+
     let viewport_height: f64 = 2.0;
     let viewport_width: f64 = ASPECT_RATIO * viewport_height;
     let focal_length: f64 = 1.0;
@@ -58,7 +59,7 @@ fn render_image_ppm(width: u32, height: u32){
                             direction: lower_left_corner + u * horizontal + v * vertical - origin
                         };
 
-            let pix: Pixel = ray_to_pixel(r);
+            let pix: Pixel = ray_to_pixel(r, &world);
             write_pixel(pix);
         }
     }
