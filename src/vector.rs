@@ -120,9 +120,9 @@ impl VecR3{
 
     pub fn to_pixel(&self, scale: f64) -> Pixel {
         Pixel { 
-            r: (256.0 * clamp((self.x * scale).sqrt(), 0.0, 0.999)) as u8,
-            g: (256.0 * clamp((self.y * scale).sqrt(), 0.0, 0.999)) as u8, 
-            b: (256.0 * clamp((self.z * scale).sqrt(), 0.0, 0.999)) as u8 
+            r: (256.0 * clamp((self.x * scale).powf(1.0/2.5), 0.0, 0.999)) as u8,
+            g: (256.0 * clamp((self.y * scale).powf(1.0/2.5), 0.0, 0.999)) as u8, 
+            b: (256.0 * clamp((self.z * scale).powf(1.0/2.5), 0.0, 0.999)) as u8 
         }
     }
 

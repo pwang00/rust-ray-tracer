@@ -1,6 +1,6 @@
 # rust-ray-tracer
 
-Self-learning Rust by implementing a ray tracer following this guide: https://raytracing.github.io/books/RayTracingInOneWeekend.html#thevec3class/variablesandmethods
+Self-learning Rust by implementing a ray tracer following this guide: [Ray Tracing In One Weekend](https://raytracing.github.io/books/RayTracingInOneWeekend.html)
 
 # Current progress:
 
