@@ -1,5 +1,6 @@
 use std::{fmt, ops};
 use crate::color::*;
+use crate::utilities::*;
 
 #[derive(Copy, Clone, PartialEq, Debug)]
 pub struct VecR3{
@@ -119,10 +120,25 @@ impl VecR3{
 
     pub fn to_pixel(&self, scale: f64) -> Pixel {
         Pixel { 
-            r: (256.0 * clamp(self.x * scale, 0.0, 0.999)) as u8,
-            g: (256.0 * clamp(self.y * scale, 0.0, 0.999)) as u8, 
-            b: (256.0 * clamp(self.z * scale, 0.0, 0.999)) as u8 
+            r: (256.0 * clamp((self.x * scale).sqrt(), 0.0, 0.999)) as u8,
+            g: (256.0 * clamp((self.y * scale).sqrt(), 0.0, 0.999)) as u8, 
+            b: (256.0 * clamp((self.z * scale).sqrt(), 0.0, 0.999)) as u8 
         }
     }
 
+    pub fn random_vec_01() -> VecR3{
+        VecR3 { 
+            x: random_double_01(),
+            y: random_double_01(), 
+            z: random_double_01() 
+        }
+    }
+
+    pub fn random_vec(min: f64, max: f64) -> VecR3{
+        VecR3 { 
+            x: random_double(min, max),
+            y: random_double(min, max), 
+            z: random_double(min, max) 
+        }
+    }
 }
