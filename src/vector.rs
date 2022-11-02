@@ -1,4 +1,3 @@
-use core::panic;
 use std::{fmt, ops};
 use crate::color::*;
 
@@ -80,7 +79,19 @@ impl ops::Div<f64> for VecR3{
     }
 }
 
+impl ops::AddAssign<VecR3> for VecR3{
+    fn add_assign(&mut self, rhs: VecR3) {
+        self.x += rhs.x;
+        self.y += rhs.y;
+        self.z += rhs.z;
+    }
+}
+
 impl VecR3{
+    pub fn zero() -> Self{
+        VecR3{x: 0.0, y: 0.0, z: 0.0}
+    }
+
     pub fn norm(&self) -> f64{
         (self.x.powi(2) + self.y.powi(2) + self.z.powi(2)).sqrt()
     }
@@ -106,15 +117,11 @@ impl VecR3{
         }
     }
 
-    pub fn to_pixel(&self) -> Pixel {
-        if self.x > 1.0 || self.y > 1.0 || self.z > 1.0{
-            panic!("Vector components are not normalized!  Failure with vector {}", self)
-        }
-
+    pub fn to_pixel(&self, scale: f64) -> Pixel {
         Pixel { 
-            r: (self.x * 255.9) as u8, 
-            g: (self.y * 255.9) as u8, 
-            b: (self.z * 255.9) as u8 
+            r: (256.0 * clamp(self.x * scale, 0.0, 0.999)) as u8,
+            g: (256.0 * clamp(self.y * scale, 0.0, 0.999)) as u8, 
+            b: (256.0 * clamp(self.z * scale, 0.0, 0.999)) as u8 
         }
     }
 
