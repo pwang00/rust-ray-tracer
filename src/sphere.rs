@@ -1,35 +1,35 @@
-use crate::ray::*;
 use crate::hittable::*;
+use crate::ray::*;
 use crate::vector::*;
 
 #[derive(Copy, Clone)]
-pub struct Sphere{
+pub struct Sphere {
     pub center: PointR3,
-    pub radius: f64
+    pub radius: f64,
 }
 
-impl Hittable for Sphere{
+impl Hittable for Sphere {
     fn hit(&self, r: Ray, t_min: f64, t_max: f64, rec: &mut HitRecord) -> bool {
         let oc: VecR3 = r.origin - self.center;
         let a: f64 = r.direction.norm().powi(2);
         let half_b = oc.dot_product(r.direction);
         let c = oc.norm().powi(2) - self.radius.powi(2);
-        
+
         // Quadratic discriminant
         let qd = half_b.powi(2) - a * c;
         if qd < 0.0 {
-            return false
+            return false;
         }
 
         // Roots are (-b +/- sqrt(b^2 - 4ac)) / 2a
         let sqrt_qd = qd.sqrt();
         let mut root = (-half_b - sqrt_qd) / a;
 
-        if root < t_min || root > t_max{
+        if root < t_min || root > t_max {
             root = (-half_b + sqrt_qd) / a;
 
-            if root < t_min || root > t_max{
-                return false
+            if root < t_min || root > t_max {
+                return false;
             }
         }
 
@@ -39,7 +39,7 @@ impl Hittable for Sphere{
 
         let outward_normal: VecR3 = (rec.p - self.center) / self.radius;
         rec.set_face_normal(r, outward_normal);
-        return true;
 
+        return true;
     }
 }

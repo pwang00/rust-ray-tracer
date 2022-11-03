@@ -1,14 +1,13 @@
-use std::rc::*;
-use std::vec::Vec;
-use crate::utilities::*;
 use crate::hittable::*;
 use crate::ray::*;
+use std::rc::*;
+use std::vec::Vec;
 
-pub struct HittableList{
-    pub objects: Vec<Rc<dyn Hittable>>
+pub struct HittableList {
+    pub objects: Vec<Rc<dyn Hittable>>,
 }
 
-impl HittableList{
+impl HittableList {
     pub fn clear_list(&mut self) {
         self.objects.clear()
     }
@@ -17,14 +16,14 @@ impl HittableList{
     }
 }
 
-impl Hittable for HittableList{
+impl Hittable for HittableList {
     fn hit(&self, r: Ray, t_min: f64, t_max: f64, rec: &mut HitRecord) -> bool {
-        let mut temp_rec: HitRecord = DEFAULT_HIT_RECORD;
+        let mut temp_rec: HitRecord = HitRecord::new();
         let mut any_hits: bool = false;
         let mut curr_closest: f64 = t_max;
 
-        for object in &self.objects{
-            if object.hit(r, t_min, curr_closest, &mut temp_rec){
+        for object in &self.objects {
+            if object.hit(r, t_min, curr_closest, &mut temp_rec) {
                 any_hits = true;
                 curr_closest = temp_rec.t;
 
@@ -35,7 +34,7 @@ impl Hittable for HittableList{
                 rec.t = temp_rec.t;
             }
         }
-        
+
         any_hits
     }
 }

@@ -8,6 +8,7 @@ Self-learning Rust by implementing a ray tracer following this guide: [Ray Traci
 - [x] World and hittable object abstraction
 - [x] Anti-aliasing
 - [x] Gamma-corrected color intensity rendering of diffuse sphere
+- [x] Correct rendering of lambertian sphere
 
 ![Gamma-corrected](images/gamma_corrected.png)
 
