@@ -1,14 +1,14 @@
 use crate::hittable::*;
+use crate::material::*;
 use crate::ray::*;
 use crate::vector::*;
-use crate::material::*;
 use std::rc::Rc;
 
 #[derive(Clone)]
 pub struct Sphere {
     pub center: PointR3,
     pub radius: f64,
-    pub mat: Rc<dyn Material>
+    pub mat: Rc<dyn Material>,
 }
 
 impl Hittable for Sphere {

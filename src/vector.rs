@@ -76,7 +76,6 @@ impl ops::Mul<VecR3> for VecR3 {
     }
 }
 
-
 impl ops::Div<f64> for VecR3 {
     type Output = VecR3;
 
@@ -107,10 +106,10 @@ impl VecR3 {
     }
 
     pub fn hadamard_product(self, other: VecR3) -> VecR3 {
-        VecR3{
+        VecR3 {
             x: self.x * other.x,
             y: self.y * other.y,
-            z: self.z * other.z
+            z: self.z * other.z,
         }
     }
 

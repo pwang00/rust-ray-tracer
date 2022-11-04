@@ -121,17 +121,15 @@ mod vector_tests {
     }
     #[test]
     fn vector_is_near_zero() {
-        let v1: VecR3 = VecR3{
-            x: 1.0/1000000000.0,
-            y: 1.0/1000000000.0,
-            z: 1.0/1000000000.0
+        let v1: VecR3 = VecR3 {
+            x: 1.0 / 1000000000.0,
+            y: 1.0 / 1000000000.0,
+            z: 1.0 / 1000000000.0,
         };
 
         assert_eq!(v1.is_near_zero(), true)
     }
-    
+
     #[test]
-    fn vector_reflect() {
-        
-    }
+    fn vector_reflect() {}
 }

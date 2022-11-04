@@ -21,7 +21,7 @@ impl Hittable for HittableList {
         let mut any_hits: bool = false;
         let mut curr_closest: f64 = t_max;
         let mut rec = rec;
-        
+
         for object in &self.objects {
             if object.hit(r, t_min, curr_closest, &mut rec) {
                 any_hits = true;

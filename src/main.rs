@@ -1,11 +1,11 @@
 use ray_tracer::camera::*;
 use ray_tracer::color::*;
 use ray_tracer::hittable_list::*;
+use ray_tracer::material::*;
 use ray_tracer::ray::*;
 use ray_tracer::sphere::Sphere;
 use ray_tracer::utilities::*;
 use ray_tracer::vector::*;
-use ray_tracer::material::*;
 use std::rc::Rc;
 
 const ASPECT_RATIO: f64 = 16.0 / 9.0;
@@ -18,11 +18,26 @@ fn render_image_ppm(width: u32, height: u32) {
         objects: Vec::new(),
     };
 
-    let material_ground = Rc::new(Lambertian::new_with_color(Color{x: 0.8, y: 0.8, z: 0.0}));
-    let material_center = Rc::new(Lambertian::new_with_color(Color{x: 0.7, y: 0.3, z: 0.3}));
-    let material_left = Rc::new(Metal::new_with_color(Color{x: 0.8, y: 0.8, z: 0.8}));
-    let material_right = Rc::new(Metal::new_with_color(Color{x: 0.8, y: 0.6, z: 0.2}));
-    
+    let material_ground = Rc::new(Lambertian::new_with_color(Color {
+        x: 0.8,
+        y: 0.8,
+        z: 0.0,
+    }));
+    let material_center = Rc::new(Lambertian::new_with_color(Color {
+        x: 0.7,
+        y: 0.3,
+        z: 0.3,
+    }));
+    let material_left = Rc::new(Metal::new_with_color(Color {
+        x: 0.8,
+        y: 0.8,
+        z: 0.8,
+    }));
+    let material_right = Rc::new(Metal::new_with_color(Color {
+        x: 0.8,
+        y: 0.6,
+        z: 0.2,
+    }));
 
     let (c1, c2, c3, c4) = (
         PointR3 {
@@ -50,24 +65,24 @@ fn render_image_ppm(width: u32, height: u32) {
     world.add_obj(Rc::new(Sphere {
         center: c1,
         radius: 100.0,
-        mat: material_ground
+        mat: material_ground,
     }));
     world.add_obj(Rc::new(Sphere {
         center: c2,
         radius: 0.5,
-        mat: material_center
+        mat: material_center,
     }));
     world.add_obj(Rc::new(Sphere {
         center: c3,
         radius: 0.5,
-        mat: material_left
+        mat: material_left,
     }));
     world.add_obj(Rc::new(Sphere {
         center: c4,
         radius: 0.5,
-        mat: material_right
+        mat: material_right,
     }));
-    
+
     let viewport_height: f64 = 2.0;
     let focal_length: f64 = 1.0;
     let cam: Camera = Camera::init(ASPECT_RATIO, viewport_height, focal_length);

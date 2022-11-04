@@ -10,7 +10,10 @@ pub struct Ray {
 
 impl Ray {
     pub fn zero() -> Self {
-        Ray { origin: PointR3::zero(), direction: VecR3::zero() }
+        Ray {
+            origin: PointR3::zero(),
+            direction: VecR3::zero(),
+        }
     }
 
     pub fn point_at(&self, t: f64) -> PointR3 {
