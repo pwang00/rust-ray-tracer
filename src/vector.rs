@@ -176,3 +176,7 @@ pub fn random_in_hemisphere(nv: VecR3) -> VecR3 {
     };
     return sgn * in_unit_sphere;
 }
+
+pub fn reflect(v: VecR3, n: VecR3) -> VecR3 {
+    v - 2.0 * v.dot_product(n) * n
+}
