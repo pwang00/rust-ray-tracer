@@ -2,7 +2,7 @@ pub mod camera;
 pub mod color;
 pub mod hittable;
 pub mod hittable_list;
-mod material;
+pub mod material;
 pub mod ray;
 pub mod sphere;
 pub mod utilities;
@@ -118,5 +118,20 @@ mod vector_tests {
                 z: 0.0
             }
         )
+    }
+    #[test]
+    fn vector_is_near_zero() {
+        let v1: VecR3 = VecR3{
+            x: 1.0/1000000000.0,
+            y: 1.0/1000000000.0,
+            z: 1.0/1000000000.0
+        };
+
+        assert_eq!(v1.is_near_zero(), true)
+    }
+    
+    #[test]
+    fn vector_reflect() {
+        
     }
 }

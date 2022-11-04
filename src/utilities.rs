@@ -3,7 +3,8 @@ use rand::Rng;
 use crate::hittable::Hittable;
 use crate::ray::Ray;
 use crate::vector::*;
-use crate::{hittable::HitRecord, ray::PointR3};
+use crate::{hittable::HitRecord};
+use crate::color::*;
 
 pub const INF: f64 = std::f64::INFINITY;
 pub const PI: f64 = 3.1415926535897932385;
@@ -28,20 +29,18 @@ pub fn vec_from_ray(r: Ray, world: &dyn Hittable, depth: u32) -> VecR3 {
     let mut rec: HitRecord = HitRecord::new();
 
     if depth <= 0 {
-        return VecR3::zero();
+        return Color::zero();
     }
 
     if world.hit(r, TOLERANCE, INF, &mut rec) {
-        let target: PointR3 = rec.p + rec.nv + random_in_hemisphere(rec.nv);
-        return 0.5
-            * vec_from_ray(
-                Ray {
-                    origin: rec.p,
-                    direction: target - rec.p,
-                },
-                world,
-                depth - 1,
-            );
+        let mut scattered: Ray = Ray::zero();
+        let mut attenuation: Color = Color::zero();
+        
+        if rec.mat.scatter(r, &rec, &mut attenuation, &mut scattered){
+            return attenuation * vec_from_ray(scattered, world, depth - 1)
+        }
+        return Color::zero()
+        
     }
 
     let unit_vec = r.direction.normalize();

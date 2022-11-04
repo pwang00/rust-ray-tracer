@@ -10,6 +10,6 @@ Self-learning Rust by implementing a ray tracer following this guide: [Ray Traci
 - [x] Gamma-corrected color intensity rendering of diffuse sphere
 - [x] Correct rendering of lambertian sphere
 
-![Gamma-corrected](images/correct_lambertian.png)
+![Gamma-corrected](images/three_spheres.png)
 
 See [images](images/) for full list of images.

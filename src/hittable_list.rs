@@ -18,20 +18,14 @@ impl HittableList {
 
 impl Hittable for HittableList {
     fn hit(&self, r: Ray, t_min: f64, t_max: f64, rec: &mut HitRecord) -> bool {
-        let mut temp_rec: HitRecord = HitRecord::new();
         let mut any_hits: bool = false;
         let mut curr_closest: f64 = t_max;
-
+        let mut rec = rec;
+        
         for object in &self.objects {
-            if object.hit(r, t_min, curr_closest, &mut temp_rec) {
+            if object.hit(r, t_min, curr_closest, &mut rec) {
                 any_hits = true;
-                curr_closest = temp_rec.t;
-
-                // Copy fields over manually since borrow checker L
-                rec.front_face = temp_rec.front_face;
-                rec.p = temp_rec.p;
-                rec.nv = temp_rec.nv;
-                rec.t = temp_rec.t;
+                curr_closest = rec.t;
             }
         }
 
