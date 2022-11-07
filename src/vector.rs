@@ -129,7 +129,7 @@ impl VecR3 {
     pub fn cross_product(self, other: VecR3) -> VecR3 {
         VecR3 {
             x: (self.y * other.z - self.z * other.y),
-            y: -(self.x * other.z - self.z * other.y),
+            y: (self.z * other.x - self.x * other.z),
             z: (self.x * other.y - self.y * other.x),
         }
     }
@@ -166,33 +166,56 @@ impl VecR3 {
             z: random_double(min, max),
         }
     }
-}
 
-pub fn random_unit_vector() -> VecR3 {
-    return random_in_unit_sphere().normalize();
-}
-
-pub fn random_in_unit_sphere() -> VecR3 {
-    loop {
-        let v: VecR3 = VecR3::random_vec(-1.0, 1.0);
-        if v.norm().powi(2) >= 1.0 {
-            continue;
-        }
-
-        return v;
+    pub fn new(x: f64, y: f64, z: f64) -> VecR3 {
+        VecR3 { x, y, z }
     }
-}
 
-pub fn random_in_hemisphere(nv: VecR3) -> VecR3 {
-    let in_unit_sphere: VecR3 = random_in_unit_sphere();
-    let sgn: f64 = if in_unit_sphere.dot_product(nv) > 0.0 {
-        1.0
-    } else {
-        -1.0
-    };
-    return sgn * in_unit_sphere;
-}
+    pub fn random_unit_vector() -> VecR3 {
+        VecR3::random_in_unit_sphere().normalize()
+    }
 
-pub fn reflect(v: VecR3, n: VecR3) -> VecR3 {
-    v - 2.0 * v.dot_product(n) * n
+    pub fn random_in_hemisphere(nv: VecR3) -> VecR3 {
+        let in_unit_sphere: VecR3 = VecR3::random_in_unit_sphere();
+        let sgn: f64 = if in_unit_sphere.dot_product(nv) > 0.0 {
+            1.0
+        } else {
+            -1.0
+        };
+
+        sgn * in_unit_sphere
+    }
+
+    pub fn random_in_unit_sphere() -> VecR3 {
+        loop {
+            let v: VecR3 = VecR3::random_vec(-1.0, 1.0);
+            if v.norm().powi(2) >= 1.0 {
+                continue;
+            }
+
+            return v;
+        }
+    }
+
+    pub fn random_in_unit_disk() -> VecR3 {
+        loop {
+            let p = VecR3::new(random_double(-1.0, 1.0), random_double(-1.0, 1.0), 0.0);
+
+            if p.norm().powi(2) >= 1.0 {
+                continue;
+            }
+
+            return p;
+        }
+    }
+    pub fn refract(uv: VecR3, n: VecR3, snell_ratio: f64) -> VecR3 {
+        let cos_t: f64 = f64::min((-uv).dot_product(n), 1.0);
+        let r_perp: VecR3 = snell_ratio * (uv + cos_t * n);
+        let r_prll: VecR3 = -(f64::abs(1.0 - r_perp.norm().powi(2)).sqrt()) * n;
+        r_perp + r_prll
+    }
+
+    pub fn reflect(v: VecR3, n: VecR3) -> VecR3 {
+        v - 2.0 * v.dot_product(n) * n
+    }
 }

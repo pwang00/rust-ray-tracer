@@ -11,6 +11,16 @@ pub struct Sphere {
     pub mat: Rc<dyn Material>,
 }
 
+impl Sphere {
+    pub fn new(center: PointR3, radius: f64, mat: Rc<dyn Material>) -> Self {
+        Sphere {
+            center,
+            radius,
+            mat,
+        }
+    }
+}
+
 impl Hittable for Sphere {
     fn hit(&self, r: Ray, t_min: f64, t_max: f64, rec: &mut HitRecord) -> bool {
         let oc: VecR3 = r.origin - self.center;

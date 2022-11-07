@@ -9,6 +9,9 @@ pub struct Ray {
 }
 
 impl Ray {
+    pub fn new(origin: VecR3, direction: VecR3) -> Self {
+        Ray { origin, direction }
+    }
     pub fn zero() -> Self {
         Ray {
             origin: PointR3::zero(),

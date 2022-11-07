@@ -27,7 +27,7 @@ impl HitRecord {
                 y: 0.0,
                 z: 0.0,
             },
-            mat: Rc::new(Lambertian::new()),
+            mat: Rc::new(Lambertian::default()),
             t: 0.0,
             front_face: false,
         }

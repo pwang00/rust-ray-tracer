@@ -8,6 +8,11 @@ pub struct HittableList {
 }
 
 impl HittableList {
+    pub fn new() -> Self {
+        HittableList {
+            objects: Vec::new(),
+        }
+    }
     pub fn clear_list(&mut self) {
         self.objects.clear()
     }

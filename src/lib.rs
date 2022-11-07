@@ -7,6 +7,7 @@ pub mod ray;
 pub mod sphere;
 pub mod utilities;
 pub mod vector;
+pub mod scene;
 
 #[cfg(test)]
 mod vector_tests {

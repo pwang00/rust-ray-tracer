@@ -1,7 +1,7 @@
 use crate::vector::VecR3;
 use std::{fmt, u32};
 
-pub const SAMPLES_PER_PIXEL: u32 = 100;
+pub const SAMPLES_PER_PIXEL: u32 = 500;
 pub const SCALE: f64 = 1.0 / SAMPLES_PER_PIXEL as f64;
 pub type Color = VecR3;
 
@@ -9,7 +9,7 @@ pub type Color = VecR3;
 pub struct Pixel {
     pub r: u8,
     pub g: u8,
-    pub b: u8,
+    pub b: u8
 }
 
 impl fmt::Display for Pixel {
