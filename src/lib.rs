@@ -8,6 +8,8 @@ pub mod sphere;
 pub mod utilities;
 pub mod vector;
 pub mod scene;
+pub mod render_params;
+pub mod image_formats;
 
 #[cfg(test)]
 mod vector_tests {

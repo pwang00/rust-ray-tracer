@@ -20,13 +20,7 @@ impl fmt::Display for Pixel {
 
 #[inline(always)]
 pub fn clamp(x: f64, min: f64, max: f64) -> f64 {
-    if x < min {
-        return min;
-    }
-    if x > max {
-        return max;
-    }
-    return x;
+    f64::max(min, f64::min(x, max))
 }
 
 pub fn write_pixel(p: Pixel) {
