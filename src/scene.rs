@@ -18,11 +18,11 @@ pub fn random_scene() -> HittableList {
 
     for a in -11..11 {
         for b in -11..11 {
-            let choose_mat = random_double_01();
+            let choose_mat = Utils::random_double_01();
             let center = PointR3::new(
-                a as f64 + 0.9 * random_double_01(),
+                a as f64 + 0.9 * Utils::random_double_01(),
                 0.2,
-                b as f64 + 0.9 * random_double_01(),
+                b as f64 + 0.9 * Utils::random_double_01(),
             );
 
             if (center - PointR3::new(4.0, 0.2, 0.0)).norm() > 0.9 {
@@ -38,7 +38,7 @@ pub fn random_scene() -> HittableList {
                     }));
                 } else if choose_mat < 0.8 {
                     let albedo = Color::random_vec(0.5, 1.0);
-                    let fuzz: f64 = random_double(0.0, 0.5);
+                    let fuzz: f64 = Utils::random_double(0.0, 0.5);
                     sphere_material = Rc::new(Metal::new(albedo, fuzz));
                     world.add_obj(Rc::new(Sphere {
                         center,

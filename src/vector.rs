@@ -153,17 +153,17 @@ impl VecR3 {
 
     pub fn random_vec_01() -> VecR3 {
         VecR3 {
-            x: random_double_01(),
-            y: random_double_01(),
-            z: random_double_01(),
+            x: Utils::random_double_01(),
+            y: Utils::random_double_01(),
+            z: Utils::random_double_01(),
         }
     }
 
     pub fn random_vec(min: f64, max: f64) -> VecR3 {
         VecR3 {
-            x: random_double(min, max),
-            y: random_double(min, max),
-            z: random_double(min, max),
+            x: Utils::random_double(min, max),
+            y: Utils::random_double(min, max),
+            z: Utils::random_double(min, max),
         }
     }
 
@@ -199,7 +199,11 @@ impl VecR3 {
 
     pub fn random_in_unit_disk() -> VecR3 {
         loop {
-            let p = VecR3::new(random_double(-1.0, 1.0), random_double(-1.0, 1.0), 0.0);
+            let p = VecR3::new(
+                Utils::random_double(-1.0, 1.0),
+                Utils::random_double(-1.0, 1.0),
+                0.0,
+            );
 
             if p.norm().powi(2) >= 1.0 {
                 continue;

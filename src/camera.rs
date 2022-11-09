@@ -1,5 +1,5 @@
 use crate::ray::*;
-use crate::utilities::degrees_to_radians;
+use crate::utilities::Utils;
 use crate::vector::*;
 
 #[derive(Copy, Clone)]
@@ -34,7 +34,7 @@ impl Camera {
         aperture: f64,
         focus_dist: f64,
     ) -> Self {
-        let theta = degrees_to_radians(vfov);
+        let theta = Utils::degrees_to_radians(vfov);
         let h = f64::tan(theta / 2.0);
         let viewport_height = 2.0 * h;
         let viewport_width = aspect_ratio * viewport_height;

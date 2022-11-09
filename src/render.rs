@@ -18,7 +18,7 @@ pub fn render_image_ppm(params: &RenderParams) {
         params.vfov,
         params.aspect_ratio,
         params.aperture,
-        params.focus_dist
+        params.focus_dist,
     );
 
     let height = params.height;
@@ -30,10 +30,10 @@ pub fn render_image_ppm(params: &RenderParams) {
         for i in 0..width {
             let mut vec: VecR3 = VecR3::zero();
             for _ in 0..params.samples_per_pixel {
-                let u: f64 = (i as f64 + random_double_01()) / (width - 1) as f64;
-                let v: f64 = (j as f64 + random_double_01()) / (height - 1) as f64;
+                let u: f64 = (i as f64 + Utils::random_double_01()) / (width - 1) as f64;
+                let v: f64 = (j as f64 + Utils::random_double_01()) / (height - 1) as f64;
                 let r: Ray = cam.get_ray(u, v);
-                vec += vec_from_ray(r, &mut world, params.max_depth);
+                vec += Ray::vec_from_ray(r, &mut world, params.max_depth, params.tolerance);
             }
             write_pixel(vec.to_pixel(scale));
         }
@@ -50,7 +50,7 @@ fn parallelized_render_ppm(params: &RenderParams) {
         params.vfov,
         params.aspect_ratio,
         params.aperture,
-        params.focus_dist
+        params.focus_dist,
     );
 
     let height = params.height;
@@ -58,5 +58,4 @@ fn parallelized_render_ppm(params: &RenderParams) {
     let scale = 1.0 / params.samples_per_pixel as f64;
 
     let parallel_iter = (-1..height as i32 - 1).rev().zip(0..width);
-    
 }

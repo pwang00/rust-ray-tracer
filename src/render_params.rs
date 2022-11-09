@@ -12,6 +12,7 @@ pub struct RenderParams {
     pub look_at: VecR3,
     pub vup: VecR3,
     pub samples_per_pixel: u32,
+    pub tolerance: f64,
 }
 
 pub const DEFAULT_PARAMS: RenderParams = RenderParams {
@@ -25,4 +26,5 @@ pub const DEFAULT_PARAMS: RenderParams = RenderParams {
     look_at: PointR3::new(0.0, 0.0, 0.0),
     vup: VecR3::new(0.0, 1.0, 0.0),
     samples_per_pixel: 100,
+    tolerance: 0.001,
 };

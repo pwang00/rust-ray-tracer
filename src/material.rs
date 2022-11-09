@@ -1,7 +1,7 @@
 use crate::color::*;
 use crate::hittable::HitRecord;
 use crate::ray::Ray;
-use crate::utilities::random_double_01;
+use crate::utilities::Utils;
 use crate::vector::*;
 
 pub struct Lambertian {
@@ -129,7 +129,7 @@ impl Material for Dielectric {
         let no_refract = refraction_ratio * sin_t > 1.0;
 
         let direction: VecR3 = if no_refract
-            || Dielectric::reflectance(cos_t, refraction_ratio) > random_double_01()
+            || Dielectric::reflectance(cos_t, refraction_ratio) > Utils::random_double_01()
         {
             VecR3::reflect(unit_direction, rec.nv)
         } else {
