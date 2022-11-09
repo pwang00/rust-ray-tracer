@@ -1,4 +1,3 @@
-
 use rand::Rng;
 use std::f64::consts::PI;
 pub struct Utils;
@@ -19,4 +18,3 @@ impl Utils {
         min + (max - min) * rand::thread_rng().gen::<f64>()
     }
 }
-
