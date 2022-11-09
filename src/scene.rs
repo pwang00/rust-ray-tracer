@@ -1,10 +1,10 @@
-use crate::hittable_list::*;
-use std::rc::Rc;
-use crate::material::*;
-use crate::sphere::*;
-use crate::ray::*;
-use crate::utilities::*;
 use crate::color::*;
+use crate::hittable_list::*;
+use crate::material::*;
+use crate::ray::*;
+use crate::sphere::*;
+use crate::utilities::*;
+use std::rc::Rc;
 
 pub fn random_scene() -> HittableList {
     let mut world: HittableList = HittableList::new();
@@ -67,7 +67,7 @@ pub fn random_scene() -> HittableList {
 
     world.add_obj(Rc::new(Sphere {
         center: PointR3::new(0.0, 1.0, 0.0),
-        radius: -0.8,
+        radius: -0.9,
         mat: transparency,
     }));
 

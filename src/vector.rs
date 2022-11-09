@@ -167,7 +167,7 @@ impl VecR3 {
         }
     }
 
-    pub fn new(x: f64, y: f64, z: f64) -> VecR3 {
+    pub const fn new(x: f64, y: f64, z: f64) -> VecR3 {
         VecR3 { x, y, z }
     }
 

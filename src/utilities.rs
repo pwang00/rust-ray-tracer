@@ -8,7 +8,7 @@ use crate::vector::*;
 
 pub const INF: f64 = std::f64::INFINITY;
 pub const PI: f64 = 3.1415926535897932385;
-const TOLERANCE: f64 = 0.0005;
+const TOLERANCE: f64 = 0.001;
 
 #[inline(always)]
 pub fn degrees_to_radians(deg: f64) -> f64 {
