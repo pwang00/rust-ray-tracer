@@ -1,4 +1,3 @@
-use crate::color::SAMPLES_PER_PIXEL;
 use crate::ray::*;
 use crate::vector::*;
 

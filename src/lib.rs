@@ -10,6 +10,7 @@ pub mod scene;
 pub mod sphere;
 pub mod utilities;
 pub mod vector;
+pub mod render;
 
 #[cfg(test)]
 mod vector_tests {
