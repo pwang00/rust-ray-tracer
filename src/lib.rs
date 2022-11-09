@@ -2,14 +2,14 @@ pub mod camera;
 pub mod color;
 pub mod hittable;
 pub mod hittable_list;
+pub mod image_formats;
 pub mod material;
 pub mod ray;
+pub mod render_params;
+pub mod scene;
 pub mod sphere;
 pub mod utilities;
 pub mod vector;
-pub mod scene;
-pub mod render_params;
-pub mod image_formats;
 
 #[cfg(test)]
 mod vector_tests {

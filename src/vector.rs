@@ -199,11 +199,7 @@ impl VecR3 {
 
     pub fn random_in_unit_disk() -> VecR3 {
         loop {
-            let p = VecR3::new(
-                random_double(-1.0, 1.0), 
-                random_double(-1.0, 1.0), 
-                0.0
-            );
+            let p = VecR3::new(random_double(-1.0, 1.0), random_double(-1.0, 1.0), 0.0);
 
             if p.norm().powi(2) >= 1.0 {
                 continue;
