@@ -2,17 +2,16 @@ use crate::hittable::*;
 use crate::material::*;
 use crate::ray::*;
 use crate::vector::*;
-use std::rc::Rc;
+use std::sync::Arc;
 
-#[derive(Clone)]
 pub struct Sphere {
     pub center: PointR3,
     pub radius: f64,
-    pub mat: Rc<dyn Material>,
+    pub mat: Arc<dyn Material + Send + Sync>,
 }
 
 impl Sphere {
-    pub fn new(center: PointR3, radius: f64, mat: Rc<dyn Material>) -> Self {
+    pub fn new(center: PointR3, radius: f64, mat: Arc<dyn Material + Send + Sync>) -> Self {
         Sphere {
             center,
             radius,
@@ -53,6 +52,6 @@ impl Hittable for Sphere {
         let outward_normal: VecR3 = (rec.p - self.center) / self.radius;
         rec.set_face_normal(r, outward_normal);
         rec.mat = self.mat.clone();
-        return true;
+        true
     }
 }

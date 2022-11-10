@@ -5,6 +5,7 @@ pub mod hittable_list;
 pub mod image_formats;
 pub mod material;
 pub mod ray;
+pub mod render;
 pub mod render_params;
 pub mod scene;
 pub mod sphere;

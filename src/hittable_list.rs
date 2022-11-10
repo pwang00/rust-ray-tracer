@@ -1,10 +1,9 @@
 use crate::hittable::*;
 use crate::ray::*;
-use std::rc::*;
 use std::vec::Vec;
 
 pub struct HittableList {
-    pub objects: Vec<Rc<dyn Hittable>>,
+    pub objects: Vec<Box<dyn Hittable + Send + Sync>>,
 }
 
 impl HittableList {
@@ -16,7 +15,7 @@ impl HittableList {
     pub fn clear_list(&mut self) {
         self.objects.clear()
     }
-    pub fn add_obj(&mut self, obj: Rc<dyn Hittable>) {
+    pub fn add_obj(&mut self, obj: Box<dyn Hittable + Send + Sync>) {
         self.objects.push(obj)
     }
 }
