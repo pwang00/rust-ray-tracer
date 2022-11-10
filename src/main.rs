@@ -9,7 +9,7 @@ use ray_tracer::utilities::*;
 use ray_tracer::vector::*;
 
 fn render_image_ppm(params: &RenderParams) {
-    let mut world: HittableList = random_scene();
+    let world: HittableList = random_scene();
 
     let cam: Camera = Camera::new(
         params.look_from,
@@ -33,7 +33,7 @@ fn render_image_ppm(params: &RenderParams) {
                 let u: f64 = (i as f64 + random_double_01()) / (width - 1) as f64;
                 let v: f64 = (j as f64 + random_double_01()) / (height - 1) as f64;
                 let r: Ray = cam.get_ray(u, v);
-                vec += vec_from_ray(r, &mut world, params.max_depth);
+                vec += vec_from_ray(r, &world, params.max_depth);
             }
             write_pixel(vec.to_pixel(scale));
         }
