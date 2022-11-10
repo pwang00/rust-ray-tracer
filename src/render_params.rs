@@ -1,5 +1,6 @@
 use crate::ray::*;
 use crate::vector::*;
+use std::fmt;
 
 pub struct RenderParams {
     pub aspect_ratio: f64,
@@ -13,6 +14,23 @@ pub struct RenderParams {
     pub vup: VecR3,
     pub samples_per_pixel: u32,
     pub tolerance: f64,
+}
+
+impl fmt::Display for RenderParams{
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> fmt::Result {
+        writeln!(f, "RenderParams {{").unwrap();
+        writeln!(f, "    height: {}", self.height).unwrap();
+        writeln!(f, "    aspect_ratio: {}", self.aspect_ratio).unwrap();
+        writeln!(f, "    max_depth: {}", self.height).unwrap();
+        writeln!(f, "    vfov: {}", self.vfov).unwrap();
+        writeln!(f, "    aperture: {}", self.focus_dist).unwrap();
+        writeln!(f, "    look_from: {}", self.look_from).unwrap();
+        writeln!(f, "    look_at: {}", self.look_at).unwrap();
+        writeln!(f, "    vup: {}", self.vup).unwrap();
+        writeln!(f, "    samples_per_pixel: {}", self.samples_per_pixel).unwrap();
+        writeln!(f, "    tolerance: {}", self.tolerance).unwrap();
+        write!(f, "}}")
+    }
 }
 
 pub const DEFAULT_PARAMS: RenderParams = RenderParams {
