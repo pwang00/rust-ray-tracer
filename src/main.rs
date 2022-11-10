@@ -1,6 +1,5 @@
 use ray_tracer::render::*;
 use ray_tracer::render_params::DEFAULT_PARAMS;
-
 use std::time::{Duration, Instant};
 
 fn compare_render_times() -> (Duration, Duration) {

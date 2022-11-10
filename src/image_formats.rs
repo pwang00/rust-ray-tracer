@@ -1,6 +1,7 @@
 use crate::color::*;
 use std::io::Write;
 use std::{fs::OpenOptions, vec::Vec};
+
 pub struct Image {
     pub width: u32,
     pub height: u32,
