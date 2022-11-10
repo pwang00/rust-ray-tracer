@@ -2,13 +2,26 @@ use crate::color::*;
 use std::io::Write;
 use std::{fs::OpenOptions, vec::Vec};
 pub struct Image {
-    pub height: u32,
     pub width: u32,
+    pub height: u32,
     pub pixel_map: Vec<Vec<Pixel>>,
 }
 
-fn write_ppm_to_file<'a, 'b>(ppm: &'a Image, filename: &'b str) -> Result<bool, &'a str> {
-    let open_res = OpenOptions::new().append(true).open(filename);
+impl Image{
+    pub fn new(width: u32, height: u32, pixel_map: Vec<Vec<Pixel>>) -> Self{
+        Image{
+            width,
+            height,
+            pixel_map
+        }
+    }
+}
+
+pub fn write_ppm_to_file<'a, 'b>(ppm: &'a Image, filename: &'b str) -> Result<bool, &'a str> {
+    let open_res = OpenOptions::new()
+        .create(true)
+        .write(true)
+        .open(filename);
 
     let open_succeeded = match open_res {
         Ok(_) => true,
@@ -23,7 +36,7 @@ fn write_ppm_to_file<'a, 'b>(ppm: &'a Image, filename: &'b str) -> Result<bool, 
     // Write header
     writeln!(&mut file, "P3\n{} {}\n255", ppm.width, ppm.height).unwrap();
 
-    for pixel in ppm.pixel_map.into_iter().flatten() {
+    for pixel in ppm.pixel_map.iter().flatten() {
         if let Err(_) = writeln!(&mut file, "{}", pixel) {
             return Err("Error occurred while writing line to file");
         }
