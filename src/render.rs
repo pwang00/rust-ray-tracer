@@ -59,7 +59,6 @@ fn parallelized_render_ppm(params: &RenderParams) -> Vec<Vec<Pixel>> {
     let scale = 1.0 / params.samples_per_pixel as f64;
 
     let vec: Vec<(u32, u32)> = (0..=height).cartesian_product(0..width).collect();
-
     let vec2: Vec<(u32, u32, Pixel)> = vec
         .into_par_iter()
         .map(|(i, j)| -> (u32, u32, Pixel) {
