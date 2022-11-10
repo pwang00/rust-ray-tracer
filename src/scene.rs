@@ -8,8 +8,7 @@ use std::sync::Arc;
 
 pub fn random_scene() -> HittableList {
     let mut world: HittableList = HittableList::new();
-    let ground_material =
-        Arc::new(Lambertian::new(Color::new(0.5, 0.5, 0.5)));
+    let ground_material = Arc::new(Lambertian::new(Color::new(0.5, 0.5, 0.5)));
 
     world.add_obj(Box::new(Sphere {
         center: PointR3::new(0.0, -1000.0, 0.0),

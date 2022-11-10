@@ -7,21 +7,18 @@ pub struct Image {
     pub pixel_map: Vec<Vec<Pixel>>,
 }
 
-impl Image{
-    pub fn new(width: u32, height: u32, pixel_map: Vec<Vec<Pixel>>) -> Self{
-        Image{
+impl Image {
+    pub fn new(width: u32, height: u32, pixel_map: Vec<Vec<Pixel>>) -> Self {
+        Image {
             width,
             height,
-            pixel_map
+            pixel_map,
         }
     }
 }
 
 pub fn write_ppm_to_file<'a, 'b>(ppm: &'a Image, filename: &'b str) -> Result<bool, &'a str> {
-    let open_res = OpenOptions::new()
-        .create(true)
-        .write(true)
-        .open(filename);
+    let open_res = OpenOptions::new().create(true).write(true).open(filename);
 
     let open_succeeded = match open_res {
         Ok(_) => true,
