@@ -1,11 +1,7 @@
 use crate::color::*;
-use crate::color::*;
 use crate::hittable::HitRecord;
 use crate::hittable::Hittable;
-use crate::hittable::*;
-use crate::hittable_list::*;
 use crate::vector::VecR3;
-use crate::vector::*;
 use std::f64::INFINITY;
 pub type PointR3 = VecR3;
 

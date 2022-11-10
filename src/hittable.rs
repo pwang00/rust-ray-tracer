@@ -1,12 +1,12 @@
 use crate::material::*;
 use crate::ray::*;
 use crate::vector::*;
+use std::sync::Arc;
 
-use std::rc::Rc;
 pub struct HitRecord {
     pub p: PointR3,
     pub nv: VecR3,
-    pub mat: Rc<dyn Material>,
+    pub mat: Arc<dyn Material + Send + Sync>,
     pub t: f64,
     pub front_face: bool,
 }
@@ -27,7 +27,7 @@ impl HitRecord {
                 y: 0.0,
                 z: 0.0,
             },
-            mat: Rc::new(Lambertian::default()),
+            mat: Arc::new(Lambertian::default()),
             t: 0.0,
             front_face: false,
         }

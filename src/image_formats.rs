@@ -4,7 +4,7 @@ use std::{fs::OpenOptions, vec::Vec};
 pub struct Image {
     pub height: u32,
     pub width: u32,
-    pub pixel_map: Vec<Pixel>,
+    pub pixel_map: Vec<Vec<Pixel>>,
 }
 
 fn write_ppm_to_file<'a, 'b>(ppm: &'a Image, filename: &'b str) -> Result<bool, &'a str> {
@@ -23,7 +23,7 @@ fn write_ppm_to_file<'a, 'b>(ppm: &'a Image, filename: &'b str) -> Result<bool, 
     // Write header
     writeln!(&mut file, "P3\n{} {}\n255", ppm.width, ppm.height).unwrap();
 
-    for pixel in ppm.pixel_map.iter() {
+    for pixel in ppm.pixel_map.into_iter().flatten() {
         if let Err(_) = writeln!(&mut file, "{}", pixel) {
             return Err("Error occurred while writing line to file");
         }
