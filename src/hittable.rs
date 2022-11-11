@@ -17,16 +17,8 @@ pub trait Hittable {
 impl HitRecord {
     pub fn new() -> Self {
         HitRecord {
-            p: PointR3 {
-                x: 0.0,
-                y: 0.0,
-                z: 0.0,
-            },
-            nv: PointR3 {
-                x: 0.0,
-                y: 0.0,
-                z: 0.0,
-            },
+            p: PointR3::zero(),
+            nv: PointR3::zero(),
             mat: Arc::new(Lambertian::default()),
             t: 0.0,
             front_face: false,
