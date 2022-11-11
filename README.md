@@ -12,9 +12,7 @@ Self-learning Rust by implementing a ray tracer following this guide: [Ray Traci
 - [x] Correct rendering of regular / fuzzy metal spheres, refactoring tracing code
 - [x] Correct rendering of dielectrics
 - [x] Randomized scene generation
-- [x] Parallelization via Rayon (approx 4.1x speedup on default rendering parameters)
-
-I do some pretty stupid stuff at the moment with copying to temp vectors in the parallel renderer since I'm not really familiar with Rayon, but hopefully I can change the current implementation to be more idiomatic and efficient.
+- [x] Parallelization via Rayon (approx 4.2x speedup on default rendering parameters)
 
 ![Final randomized scene](images/final.png)
 
