@@ -16,7 +16,7 @@ pub struct RenderParams {
     pub tolerance: f64,
 }
 
-impl fmt::Display for RenderParams{
+impl fmt::Display for RenderParams {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> fmt::Result {
         writeln!(f, "RenderParams {{").unwrap();
         writeln!(f, "    height: {}", self.height).unwrap();

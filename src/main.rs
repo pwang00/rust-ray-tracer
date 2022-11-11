@@ -1,5 +1,5 @@
-use ray_tracer::render::*;
 use ray_tracer::render_params::DEFAULT_PARAMS;
+use ray_tracer::{image_formats::write_ppm_to_file, render::*};
 use std::time::{Duration, Instant};
 
 fn compare_render_times() -> (Duration, Duration) {
@@ -22,4 +22,10 @@ fn main() {
     let (d1, d2) = compare_render_times();
 
     println!("Unparallelized: {:?} vs Parallelized: {:?}", d1, d2);
+    
+    let filename = "rayon.ppm";
+    let image = parallelized_render_ppm(&DEFAULT_PARAMS);
+    if let Err(_) = write_ppm_to_file(&image, filename) {
+        println!("Error occurred.")
+    }
 }
