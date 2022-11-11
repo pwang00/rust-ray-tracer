@@ -63,7 +63,7 @@ pub fn parallelized_render_ppm(params: &RenderParams) -> Image {
     let pixel_map: Vec<Vec<Pixel>> = (0..height)
         .into_par_iter()
         .map(|j| -> Vec<Pixel> {
-            let mut row: Vec<Pixel> = Vec::new();
+            let mut row: Vec<Pixel> = Vec::with_capacity(width as usize);
             for i in 0..width {
                 let mut vec: VecR3 = VecR3::zero();
                 for _ in 0..params.samples_per_pixel {
