@@ -17,6 +17,8 @@ fn compare_render_times() -> (Duration, Duration) {
 }
 
 fn main() {
+    rayon::ThreadPoolBuilder::new().num_threads(8).build_global().unwrap();
+    
     println!("Starting benchmark with the following render parameters:\n\n{}\n", &DEFAULT_PARAMS);
 
     let (d1, d2) = compare_render_times();

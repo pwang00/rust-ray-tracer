@@ -14,6 +14,6 @@ Self-learning Rust by implementing a ray tracer following this guide: [Ray Traci
 - [x] Randomized scene generation
 - [x] Parallelization via Rayon (approx 4.2x speedup on default rendering parameters)
 
-![Final randomized scene](images/final.png)
+![Final randomized scene](images/fix.png)
 
 See [images](images/) for full list of images.
