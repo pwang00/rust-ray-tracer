@@ -26,7 +26,7 @@ impl Ray {
         self.origin + t * self.direction
     }
 
-    pub fn vec_from_ray(r: Ray, world: &dyn Hittable, depth: u32, tolerance: f64) -> VecR3 {
+    pub fn trace(r: Ray, world: &dyn Hittable, depth: u32, tolerance: f64) -> VecR3 {
         let mut rec: HitRecord = HitRecord::new();
 
         if depth <= 0 {
@@ -38,7 +38,7 @@ impl Ray {
             let mut attenuation: Color = Color::zero();
 
             if rec.mat.scatter(r, &rec, &mut attenuation, &mut scattered) {
-                return attenuation * Ray::vec_from_ray(scattered, world, depth - 1, tolerance);
+                return attenuation * Ray::trace(scattered, world, depth - 1, tolerance);
             }
             return Color::zero();
         }

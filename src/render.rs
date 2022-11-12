@@ -35,7 +35,7 @@ pub fn render_image_ppm(params: &RenderParams) -> Image {
                 let u: f64 = (i as f64 + Utils::random_double_01()) / (width - 1) as f64;
                 let v: f64 = (j as f64 + Utils::random_double_01()) / (height - 1) as f64;
                 let r: Ray = cam.get_ray(u, v);
-                vec += Ray::vec_from_ray(r, &mut world, params.max_depth, params.tolerance);
+                vec += Ray::trace(r, &mut world, params.max_depth, params.tolerance);
             }
             pixel_map[(height - 1 - j) as usize][i as usize] = vec.to_pixel(scale);
         }
@@ -70,7 +70,7 @@ pub fn parallelized_render_ppm(params: &RenderParams) -> Image {
                     let u: f64 = (i as f64 + Utils::random_double_01()) / (width - 1) as f64;
                     let v: f64 = (j as f64 + Utils::random_double_01()) / (height - 1) as f64;
                     let r: Ray = cam.get_ray(u, v);
-                    vec += Ray::vec_from_ray(r, &world, params.max_depth, params.tolerance);
+                    vec += Ray::trace(r, &world, params.max_depth, params.tolerance);
                 }
                 row.push(vec.to_pixel(scale))
             }
@@ -78,6 +78,6 @@ pub fn parallelized_render_ppm(params: &RenderParams) -> Image {
         })
         .rev()
         .collect();
-
     return Image::new(width, height, pixel_map);
 }
+
