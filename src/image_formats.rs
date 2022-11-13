@@ -18,8 +18,11 @@ impl Image {
     }
 }
 
-pub fn write_ppm_to_file<'a, 'b>(ppm: &'a Image, filename: &'b str) -> Result<bool, &'a str> {
-    let open_res = OpenOptions::new().create(true).write(true).open(filename);
+pub fn write_ppm_to_file<'a>(ppm: &'a Image, filename: &'a str) -> Result<bool, &'a str> {
+    let open_res = OpenOptions::new()
+        .create(true)
+        .write(true)
+        .open(filename);
 
     let open_succeeded = match open_res {
         Ok(_) => true,
