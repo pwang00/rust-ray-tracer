@@ -17,4 +17,9 @@ impl Utils {
     pub fn random_double(min: f64, max: f64) -> f64 {
         min + (max - min) * rand::thread_rng().gen::<f64>()
     }
+
+    #[inline(always)]
+    pub fn clamp(x: f64, min: f64, max: f64) -> f64 {
+        f64::max(min, f64::min(x, max))
+    }
 }

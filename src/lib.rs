@@ -1,8 +1,7 @@
+pub mod benchmark;
 pub mod camera;
-pub mod color;
 pub mod hittable;
 pub mod hittable_list;
-pub mod image_formats;
 pub mod material;
 pub mod ray;
 pub mod render;
@@ -18,25 +17,10 @@ mod vector_tests {
 
     #[test]
     fn vector_add() {
-        let v1: VecR3 = VecR3 {
-            x: 1.0,
-            y: 2.0,
-            z: 3.0,
-        };
-        let v2: VecR3 = VecR3 {
-            x: 1.0,
-            y: 1.0,
-            z: 1.0,
-        };
+        let v1: VecR3 = VecR3::new(1.0, 2.0, 3.0);
+        let v2: VecR3 = VecR3::new(1.0, 1.0, 1.0);
         let v3: VecR3 = v1 + v2;
-        assert_eq!(
-            v3,
-            VecR3 {
-                x: 2.0,
-                y: 3.0,
-                z: 4.0
-            }
-        )
+        assert_eq!(v3, VecR3::new(2.0, 3.0, 4.0))
     }
 
     #[test]

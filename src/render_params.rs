@@ -1,10 +1,12 @@
 use crate::ray::*;
 use crate::vector::*;
+use serde::{Deserialize, Serialize};
 use std::fmt;
 
+#[derive(Serialize, Deserialize)]
 pub struct RenderParams {
     pub aspect_ratio: f64,
-    pub height: u32,
+    pub width: u32,
     pub max_depth: u32,
     pub vfov: f64,
     pub aperture: f64,
@@ -19,9 +21,9 @@ pub struct RenderParams {
 impl fmt::Display for RenderParams {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> fmt::Result {
         writeln!(f, "RenderParams {{").unwrap();
-        writeln!(f, "    height: {}", self.height).unwrap();
+        writeln!(f, "    width: {}", self.width).unwrap();
         writeln!(f, "    aspect_ratio: {}", self.aspect_ratio).unwrap();
-        writeln!(f, "    max_depth: {}", self.height).unwrap();
+        writeln!(f, "    max_depth: {}", self.max_depth).unwrap();
         writeln!(f, "    vfov: {}", self.vfov).unwrap();
         writeln!(f, "    aperture: {}", self.focus_dist).unwrap();
         writeln!(f, "    look_from: {}", self.look_from).unwrap();
@@ -35,7 +37,7 @@ impl fmt::Display for RenderParams {
 
 pub const DEFAULT_PARAMS: RenderParams = RenderParams {
     aspect_ratio: 3.0 / 2.0,
-    height: 200,
+    width: 300,
     max_depth: 50,
     vfov: 20.0,
     aperture: 0.1,

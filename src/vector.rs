@@ -1,8 +1,11 @@
-use crate::color::*;
+use serde::{Deserialize, Serialize};
+
 use crate::utilities::*;
 use std::{fmt, ops};
 
-#[derive(Copy, Clone, PartialEq, Debug)]
+pub type Color = VecR3;
+
+#[derive(Copy, Clone, PartialEq, Debug, Deserialize, Serialize)]
 pub struct VecR3 {
     pub x: f64,
     pub y: f64,
@@ -143,12 +146,12 @@ impl VecR3 {
         }
     }
 
-    pub fn to_pixel(&self, scale: f64) -> Pixel {
-        Pixel {
-            r: (256.0 * clamp((self.x * scale).sqrt(), 0.0, 0.999)) as u8,
-            g: (256.0 * clamp((self.y * scale).sqrt(), 0.0, 0.999)) as u8,
-            b: (256.0 * clamp((self.z * scale).sqrt(), 0.0, 0.999)) as u8,
-        }
+    pub fn to_pixel(&self, scale: f64) -> Vec<u8> {
+        Vec::from([
+            (256.0 * Utils::clamp((self.x * scale).sqrt(), 0.0, 0.999)) as u8,
+            (256.0 * Utils::clamp((self.y * scale).sqrt(), 0.0, 0.999)) as u8,
+            (256.0 * Utils::clamp((self.z * scale).sqrt(), 0.0, 0.999)) as u8,
+        ])
     }
 
     pub fn random_vec_01() -> VecR3 {
