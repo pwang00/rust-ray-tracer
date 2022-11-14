@@ -19,6 +19,7 @@ I have also implemented some additional features:
 
 - [x] Parallelization via Rayon (between 3.5 - 4.3x speedup on default rendering parameters)
 - [x] Saving rendered scenes to any image format
+- [x] Argument parsing via argparse
 
 ![Final randomized scene](images/fix.png)
 
