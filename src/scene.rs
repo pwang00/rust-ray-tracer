@@ -1,9 +1,9 @@
-use crate::color::*;
 use crate::hittable_list::*;
 use crate::material::*;
 use crate::ray::*;
 use crate::sphere::*;
 use crate::utilities::*;
+use crate::vector::*;
 use std::sync::Arc;
 
 pub fn random_scene() -> HittableList {

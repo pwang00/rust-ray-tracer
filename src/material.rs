@@ -1,4 +1,3 @@
-use crate::color::*;
 use crate::hittable::HitRecord;
 use crate::ray::Ray;
 use crate::utilities::Utils;

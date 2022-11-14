@@ -4,6 +4,8 @@ Self-learning Rust by implementing a ray tracer following this guide: [Ray Traci
 
 # Current progress:
 
+The ray tracer is feature-complete with regards to the guide:
+
 - [x] Shading via normal vector to sphere
 - [x] World and hittable object abstraction
 - [x] Anti-aliasing
@@ -12,7 +14,11 @@ Self-learning Rust by implementing a ray tracer following this guide: [Ray Traci
 - [x] Correct rendering of regular / fuzzy metal spheres, refactoring tracing code
 - [x] Correct rendering of dielectrics
 - [x] Randomized scene generation
-- [x] Parallelization via Rayon (approx 4.2x speedup on default rendering parameters)
+
+I have also implemented some additional features:
+
+- [x] Parallelization via Rayon (between 3.5 - 4.3x speedup on default rendering parameters)
+- [x] Saving rendered scenes to any image format
 
 ![Final randomized scene](images/fix.png)
 
