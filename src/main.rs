@@ -85,7 +85,7 @@ fn main() {
         &params
     );
 
-    match unparallelized_render_image(&params) {
+    match parallelized_render_image(&params) {
         None => panic!("Something went wrong while rendering scene."),
         Some(res) => img = res,
     }
