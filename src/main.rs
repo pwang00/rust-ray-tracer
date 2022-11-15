@@ -64,11 +64,16 @@ fn main() {
 
     if benchmark {
         println!("===========================Benchmark===========================\n");
+        println!(
+            "Running benchmark with the default render parameters:\n\n{}\n",
+            &DEFAULT_PARAMS
+        );
         let (d1, d2) = compare_render_times();
         println!(
             "Benchmark statistics:\nUnparallelized: {:?}\nParallelized: {:?}",
             d1, d2
         );
+        return
     }
 
     params.width = width;
